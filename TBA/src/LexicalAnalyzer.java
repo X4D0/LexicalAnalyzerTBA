@@ -5,25 +5,26 @@ import java.util.*;
  */
 public class LexicalAnalyzer {
     public static void main(String[] args) {
-        Stack stack = new Stack(); /* Make a New Stack */
+        Stack stack = new Stack(); /* Make a New Stack For Characters*/
+        
         Scanner input = new Scanner(System.in);
-        System.out.println("Input : ");
-        String s = input.next(); /* Input String */
+        System.out.print("Input : ");
+        String s = input.nextLine(); /* Input String */
         char[] arrayChar = s.toCharArray(); /* Every char in String s will be added to Array */
         
         /* Push every Char in arrayChar into Stack */
-        for (int i = 0; i < arrayChar.length; i++) {
+        for (int i = arrayChar.length - 1; i >= 0; i--) {
             stack.add(arrayChar[i]);
         }
         
-        System.out.println("Token : ");
+        System.out.print("\nToken : ");
         /* Checking Process */
         while(!stack.isEmpty()){
             /* Token 1 (p,q,r,s) */
             char pop = (char) stack.pop();
             if (pop == 'p' || pop == 'q' || pop == 'r' || pop == 's'){
-                System.out.println(" 1 |");
-                pop = (char) stack.pop();
+                System.out.print(" 1 |");
+                
             }
             
             /* Token 2 (not) */
@@ -32,7 +33,8 @@ public class LexicalAnalyzer {
                 if(pop == 'o'){
                     pop = pop = (char) stack.pop();;
                     if(pop == 't'){
-                        System.out.println(" 2 |");
+                        System.out.print(" 2 |");
+                        
                     }
                 }
             }
@@ -43,7 +45,7 @@ public class LexicalAnalyzer {
                 if(pop == 'n'){
                     pop = (char) stack.pop();
                     if(pop == 'd'){
-                        System.out.println(" 3 |");
+                        System.out.print(" 3 |");
                     }
                 }
             }
@@ -52,7 +54,7 @@ public class LexicalAnalyzer {
             if(pop == 'o'){
                 pop = (char) stack.pop();
                 if(pop == 'r'){
-                    System.out.println(" 4 |");
+                    System.out.print(" 4 |");
                 }
             }
             
@@ -62,7 +64,7 @@ public class LexicalAnalyzer {
                 if(pop == 'o'){
                     pop = (char) stack.pop();
                     if(pop == 'r'){
-                        System.out.println(" 5 |");
+                        System.out.print(" 5 |");
                     }
                 }
             }
@@ -71,7 +73,7 @@ public class LexicalAnalyzer {
             if(pop == 'i'){
                 pop = (char) stack.pop();
                 if(pop == 'f'){
-                    System.out.println(" 6 |");
+                    System.out.print(" 6 |");
                 }
             }
             
@@ -83,7 +85,7 @@ public class LexicalAnalyzer {
                     if(pop == 'e'){
                         pop = (char) stack.pop();
                         if(pop == 'n'){
-                            System.out.println(" 7 |");
+                            System.out.print(" 7 |");
                         }
                     }
                 }
@@ -95,18 +97,18 @@ public class LexicalAnalyzer {
                 if(pop == 'f'){
                     pop = (char) stack.pop();
                     if(pop == 'f'){
-                        System.out.println(" 8 |");
+                        System.out.print(" 8 |");
                     }
                 }
             }
             
             /* Token 9 ( '(' ) */
             if(pop == '('){
-                System.out.println(" 9 |");
-                while(pop != '('){
+                System.out.print(" 9 |");
+                while(pop != ')'){
                     pop = (char) stack.pop();
                     if (pop == 'p' || pop == 'q' || pop == 'r' || pop == 's'){
-                    System.out.println(" 1 |");
+                    System.out.print(" 1 |");
                     }
 
                     /* Token 2 (not) */
@@ -115,7 +117,7 @@ public class LexicalAnalyzer {
                         if(pop == 'o'){
                             pop = (char) stack.pop();
                             if(pop == 't'){
-                                System.out.println(" 2 |");
+                                System.out.print(" 2 |");
                             }
                         }
                     }
@@ -126,7 +128,7 @@ public class LexicalAnalyzer {
                         if(pop == 'n'){
                             pop = (char) stack.pop();
                             if(pop == 'd'){
-                                System.out.println(" 3 |");
+                                System.out.print(" 3 |");
                             }
                         }
                     }
@@ -135,7 +137,7 @@ public class LexicalAnalyzer {
                     if(pop == 'o'){
                         pop = (char) stack.pop();
                         if(pop == 'r'){
-                            System.out.println(" 4 |");
+                            System.out.print(" 4 |");
                         }
                     }
 
@@ -145,7 +147,7 @@ public class LexicalAnalyzer {
                         if(pop == 'o'){
                             pop = (char) stack.pop();
                             if(pop == 'r'){
-                                System.out.println(" 5 |");
+                                System.out.print(" 5 |");
                             }
                         }
                     }
@@ -154,7 +156,7 @@ public class LexicalAnalyzer {
                     if(pop == 'i'){
                         pop = (char) stack.pop();
                         if(pop == 'f'){
-                            System.out.println(" 6 |");
+                            System.out.print(" 6 |");
                         }
                     }
 
@@ -166,7 +168,7 @@ public class LexicalAnalyzer {
                             if(pop == 'e'){
                                 pop = (char) stack.pop();
                                 if(pop == 'n'){
-                                    System.out.println(" 7 |");
+                                    System.out.print(" 7 |");
                                 }
                             }
                         }
@@ -178,13 +180,13 @@ public class LexicalAnalyzer {
                         if(pop == 'f'){
                             pop = (char) stack.pop();
                             if(pop == 'f'){
-                                System.out.println(" 8 |");
+                                System.out.print(" 8 |");
                             }
                         }
                     }
                     
                     if(pop == ')'){
-                        System.out.println(" 10 |");
+                        System.out.print(" 10 |");
                     }
                 }
             }
