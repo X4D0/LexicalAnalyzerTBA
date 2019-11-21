@@ -7,6 +7,7 @@ public class LexicalAnalyzer {
     public static void main(String[] args) {
         int i = 0;
         int temp = 0;
+        int k = 0;
         
         Stack stack = new Stack(); /* Make a New Stack For Characters*/
         Stack validasi = new Stack(); /* Make another Stack for Validation */
@@ -114,19 +115,23 @@ public class LexicalAnalyzer {
                 i++;
                 System.out.print("9|");
                 validasi.push(9);
+                k++;
             }
             
             /* Token 10 (')') */
             else if(arrayChar[i] == ')')
             {
                 int j = i-1;
-                while(arrayChar[j] != '(')
+                while(arrayChar[j] != '(' && k != 0)
                 {
                     stack.pop();
                     j--;
+                    if (arrayChar[j] == '('){
+                        k--;
+                    }
                 }
                 stack.pop();
-                stack.pop();
+                //stack.pop();
                 i++;
                 System.out.print("10|");
                 validasi.push(10);
@@ -147,7 +152,7 @@ public class LexicalAnalyzer {
                 try{
                     if(validasi.peek().equals(999))
                     {
-                        System.out.print("NOT VALID");
+                        System.out.print("NOT VALID WOY\n");
                         break;
                     }
 
@@ -155,15 +160,16 @@ public class LexicalAnalyzer {
                     validasi.pop();
 
                     if (validasi.empty()) {
-                        System.out.print("VALID");
+                        System.out.print("VALID\n");
                         break;
                     }
 
-                    if(validasi.peek().equals(temp) && validasi.peek().equals(10)){
-                        System.out.print("NOT VALID");
+                    if(validasi.peek().equals(temp) && (int)validasi.peek() != 10 && k != 0){
+                        System.out.print("NOT VALID KUNYUK\n");
                         break;
-                    }else if (temp == 2 || temp == 6 || temp == 9 && validasi.peek().equals(1)){
-                        System.out.print("NOT VALID");
+                    }else if ((temp == 2 || temp == 6 || temp == 9 && validasi.peek().equals(1))){
+                        System.out.println("K = "+k);
+                        System.out.print("NOT VALID\n");
                         break;
                     }
                 }catch(EmptyStackException e){
